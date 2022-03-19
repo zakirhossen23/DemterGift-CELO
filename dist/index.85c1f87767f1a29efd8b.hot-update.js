@@ -1,0 +1,22 @@
+self["webpackHotUpdatedemeter"]("/index",{
+
+/***/ "./src/components/layout/Nav/index.tsx":
+/*!*********************************************!*\
+  !*** ./src/components/layout/Nav/index.tsx ***!
+  \*********************************************/
+/***/ (function() {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\src\\components\\layout\\Nav\\index.tsx: Unexpected token (19:126)\n\n\u001b[0m \u001b[90m 17 |\u001b[39m     \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m fetchInfo() {\u001b[0m\n\u001b[0m \u001b[90m 18 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m         \u001b[36mif\u001b[39m (window\u001b[33m.\u001b[39methereum\u001b[33m.\u001b[39mselectedAddress \u001b[33m!=\u001b[39m \u001b[36mnull\u001b[39m \u001b[33m&&\u001b[39m     window\u001b[33m.\u001b[39mlocalStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m\"ConnectedMetaCelo\"\u001b[39m) \u001b[33m==\u001b[39m \u001b[32m\"true\"\u001b[39m)        ) {\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 20 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 21 |\u001b[39m             \u001b[36mawait\u001b[39m setAcc(window\u001b[33m.\u001b[39methereum\u001b[33m.\u001b[39mselectedAddress\u001b[33m.\u001b[39mtoString()\u001b[33m.\u001b[39msubstring(\u001b[35m0\u001b[39m\u001b[33m,\u001b[39m \u001b[35m25\u001b[39m) \u001b[33m+\u001b[39m \u001b[32m\"...\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 |\u001b[39m             \u001b[36mlet\u001b[39m \u001b[33mBlc\u001b[39m \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m fetch(\u001b[32m\"https://alfajores-blockscout.celo-testnet.org/api/eth-rpc\"\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n    at Object._raise (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\error.js:151:45)\n    at Object.raiseWithData (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\error.js:146:17)\n    at Object.raise (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\error.js:89:17)\n    at Object.unexpected (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\util.js:175:16)\n    at Object.parseExprAtom (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\expression.js:1299:22)\n    at Object.parseExprAtom (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\plugins\\jsx\\index.js:572:22)\n    at Object.parseExprSubscripts (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\expression.js:680:23)\n    at Object.parseUpdate (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\expression.js:660:21)\n    at Object.parseMaybeUnary (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\parser\\expression.js:631:23)\n    at Object.parseMaybeUnary (C:\\Users\\zakir\\Documents\\DemterGift-ONE-main\\DemterGift-CELO\\node_modules\\@babel\\parser\\src\\plugins\\typescript\\index.js:3011:22)");
+
+/***/ })
+
+},
+/******/ function(__webpack_require__) { // webpackRuntimeModules
+/******/ /* webpack/runtime/getFullHash */
+/******/ !function() {
+/******/ 	__webpack_require__.h = function() { return "02657b60397d1f1729e2"; }
+/******/ }();
+/******/ 
+/******/ }
+);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiL2luZGV4Ljg1YzFmODc3NjdmMWEyOWVmZDhiLmhvdC11cGRhdGUuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7OztVQUFBLHFDQUFxQyIsInNvdXJjZXMiOlsid2VicGFjazovL2RlbWV0ZXIvd2VicGFjay9ydW50aW1lL2dldEZ1bGxIYXNoIl0sInNvdXJjZXNDb250ZW50IjpbIl9fd2VicGFja19yZXF1aXJlX18uaCA9IGZ1bmN0aW9uKCkgeyByZXR1cm4gXCIwMjY1N2I2MDM5N2QxZjE3MjllMlwiOyB9Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9
