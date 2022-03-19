@@ -16,7 +16,6 @@ import Donation from '@/pages/donation'
 import Auction from '@/pages/donation/auction'
 
 import './App.scss'
-import * as serviceWorker from "./serviceWorker";
 //Toast
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -29,7 +28,6 @@ export function App(): JSX.Element {
             locale="en"
             defaultLocale="en"
             
-            onError={noop}
         >
             <Router>
                 <div className="wrapper">
