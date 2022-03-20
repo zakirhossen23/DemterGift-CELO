@@ -24,7 +24,7 @@ export default function Home() {
 			<div className="row">
 				<div style={{ 'width': '690px' }} className="col">
 					<div className="text-center">
-						<h4 style={{ fontSize: '20px' }}>DemterGift creates the most easy, transparent and fun NFT charity auction on Web3, by helping charities raise additional support!</h4>
+						<h4 style={{ fontSize: '20px' }}>DemeterGift creates the most easy, transparent and fun NFT charity auction on Web3, by helping charities raise additional support!</h4>
 					</div>
 				</div>
 			</div>
