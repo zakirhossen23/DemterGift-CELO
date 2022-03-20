@@ -260,7 +260,7 @@ contract CeloERC721 is ERC721 {
 		string memory _bidURI,
 		string memory _updatedURI,
 		uint256 _eventid
-	) public  payable {
+	) public   {
 		uint256 _EventTokenId = getGetEventsTokenID(
 			_eventid,
 			_tokenURIs[_tokenId]

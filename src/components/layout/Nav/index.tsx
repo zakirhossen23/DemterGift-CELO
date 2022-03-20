@@ -12,42 +12,48 @@ export function Nav(): JSX.Element {
     const [Balance, setBalance] = useState('');
 
     const [isSigned, setSigned] = useState(false);
- 
-	const Web3 = require("web3")
-	const ContractKit = require('@celo/contractkit')
-	const web3 = new Web3(window.ethereum)
-	const kit = ContractKit.newKitFromWeb3(web3)
+
+  
 
 
     async function fetchInfo() {
-
-        if (window.ethereum.selectedAddress != null &&     window.localStorage.getItem("ConnectedMetaCelo") == "true")  {
+        if (window.ethereum == null){
+            window.document.getElementById("withoutSign").style.display = "none";
+            window.document.getElementById("withSign").style.display = "none";
+               window.document.getElementById("installMeta").style.display = "";
+               return;
+        }
+        if (window.ethereum.selectedAddress != null && window.localStorage.getItem("ConnectedMetaCelo") == "true") {
+            const Web3 = require("web3")
+            const ContractKit = require('@celo/contractkit')
+            const web3 = new Web3(window.ethereum)
+            const kit = ContractKit.newKitFromWeb3(web3)
             let cUSDtoken = await kit.contracts.getStableToken()
 
             let cUSDBalance = await cUSDtoken.balanceOf(window.ethereum.selectedAddress)
 
 
             await setAcc(window.ethereum.selectedAddress.toString().substring(0, 25) + "...");
-         
-            setBalance(cUSDBalance/1000000000000000000 + " cUSD");
+
+            setBalance(cUSDBalance / 1000000000000000000 + " cUSD");
             setSigned(true);
-            
+
             window.document.getElementById("withoutSign").style.display = "none";
             window.document.getElementById("withSign").style.display = "";
-        }else{
+        } else {
             setSigned(false);
             window.document.getElementById("withoutSign").style.display = "";
             window.document.getElementById("withSign").style.display = "none";
         }
     }
     useEffect(() => {
-        setInterval(async() => {
-           await fetchInfo();
+        setInterval(async () => {
+            await fetchInfo();
         }, 1000)
 
     }, []);
     function NavButtons(): JSX.Element {
-     
+
         return (<>
             <li>
                 <NavLink to="/donation" id="donationbtnNav">
@@ -63,49 +69,49 @@ export function Nav(): JSX.Element {
     }
     const [modalShow, setModalShow] = useState(false);
 
-  //Celo
-  async function onClickConnectCelo() {
-    let result = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    result;
-    try {
-        const getacc = await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0xaef3', }], //44787
-        });
-        getacc;
-    } catch (switchError: any) {
-        // This error code indicates that the chain has not been added to MetaMask.
-        if (switchError.code === 4902) {
-            try {
-                await window.ethereum.request({
-                    method: 'wallet_addEthereumChain',
-                    params: [
-                        {
-                            chainId: '0xaef3', //44787
-                            chainName: 'Alfajores Celo Testnet',
-                            nativeCurrency: {
-                                name: 'CUSD',
-                                symbol: 'CUSD',
-                                decimals: 18,
+    //Celo
+    async function onClickConnectCelo() {
+        let result = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        result;
+        try {
+            const getacc = await window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: '0xaef3', }], //44787
+            });
+            getacc;
+        } catch (switchError: any) {
+            // This error code indicates that the chain has not been added to MetaMask.
+            if (switchError.code === 4902) {
+                try {
+                    await window.ethereum.request({
+                        method: 'wallet_addEthereumChain',
+                        params: [
+                            {
+                                chainId: '0xaef3', //44787
+                                chainName: 'Alfajores Celo Testnet',
+                                nativeCurrency: {
+                                    name: 'CUSD',
+                                    symbol: 'CUSD',
+                                    decimals: 18,
+                                },
+                                rpcUrls: ['https://alfajores-forno.celo-testnet.org'],
                             },
-                            rpcUrls: ['https://alfajores-forno.celo-testnet.org'],
-                        },
-                    ],
-                });
-            } catch (addError) {
-                // handle "add" error
-                console.log(addError);
+                        ],
+                    });
+                } catch (addError) {
+                    // handle "add" error
+                    console.log(addError);
+                }
             }
+            // handle other "switch" errors
         }
-        // handle other "switch" errors
+        window.localStorage.setItem("ConnectedMetaCelo", "true")
     }
-    window.localStorage.setItem("ConnectedMetaCelo", "true")
-}
 
-async function onClickDisConnectCelo(){
-    window.localStorage.setItem("ConnectedMetaCelo", "")
+    async function onClickDisConnectCelo() {
+        window.localStorage.setItem("ConnectedMetaCelo", "")
 
-}
+    }
 
     return (
         <nav className="main-nav">
@@ -114,10 +120,17 @@ async function onClickDisConnectCelo(){
 
                 <li>
                     <div id='withoutSign' className="wallets">
-                        <div className="wallet">                         
-                                <button type="button" onClick={onClickConnectCelo} className="btn btn-secondary" aria-disabled="false">
-                                    Connect to a wallet
-                                </button>                          
+                        <div className="wallet">
+                            <button type="button" onClick={onClickConnectCelo} className="btn btn-secondary" aria-disabled="false">
+                                Connect to a wallet
+                            </button>
+                        </div>
+                    </div>
+                    <div id='installMeta' style={{ display: "none" }} className="wallets">
+                        <div className="wallet">
+                            <button type="button" onClick={()=>{window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn", "_blank")}} className="btn btn-secondary" aria-disabled="false">
+                                Install Metamask
+                            </button>
                         </div>
                     </div>
 
