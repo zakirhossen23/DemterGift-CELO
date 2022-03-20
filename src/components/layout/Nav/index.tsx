@@ -116,7 +116,7 @@ async function onClickDisConnectCelo(){
                     <div id='withoutSign' className="wallets">
                         <div className="wallet">                         
                                 <button type="button" onClick={onClickConnectCelo} className="btn btn-secondary" aria-disabled="false">
-                                    Connect wallet
+                                    Connect to a wallet
                                 </button>                          
                         </div>
                     </div>
