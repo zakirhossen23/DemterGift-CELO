@@ -31,16 +31,21 @@ export function Nav(): JSX.Element {
          
             setBalance(cUSDBalance/1000000000000000000 + " cUSD");
             setSigned(true);
+            
             window.document.getElementById("withoutSign").style.display = "none";
             window.document.getElementById("withSign").style.display = "";
+        }else{
+            setSigned(false);
+            window.document.getElementById("withoutSign").style.display = "";
+            window.document.getElementById("withSign").style.display = "none";
         }
     }
     useEffect(() => {
-        setTimeout(() => {
-            fetchInfo();
-        }, 100)
+        setInterval(async() => {
+           await fetchInfo();
+        }, 1000)
 
-    }, [2000]);
+    }, []);
     function NavButtons(): JSX.Element {
      
         return (<>
@@ -95,12 +100,10 @@ export function Nav(): JSX.Element {
         // handle other "switch" errors
     }
     window.localStorage.setItem("ConnectedMetaCelo", "true")
-    window.location.reload();
 }
 
 async function onClickDisConnectCelo(){
     window.localStorage.setItem("ConnectedMetaCelo", "")
-    window.location.reload();
 
 }
 
@@ -113,7 +116,7 @@ async function onClickDisConnectCelo(){
                     <div id='withoutSign' className="wallets">
                         <div className="wallet">                         
                                 <button type="button" onClick={onClickConnectCelo} className="btn btn-secondary" aria-disabled="false">
-                                    Login
+                                    Connect wallet
                                 </button>                          
                         </div>
                     </div>
