@@ -32,7 +32,7 @@ export default function CreateEvents() {
     const [EventGoal, EventGoalInput] = UseFormInput({
         defaultValue: "",
         type: 'text',
-        placeholder: 'Event Goal in CELO',
+        placeholder: 'Event Goal in CELO Dollar (CUSD)',
         id: 'goal',
     });
 
@@ -62,6 +62,10 @@ export default function CreateEvents() {
                 logo: {
                     type: 'string',
                     description: EventLogo
+                },
+                wallet: {
+                    type: 'string',
+                    description: window.ethereum.selectedAddress
                 },
                 typeimg: {
                     type: 'string',

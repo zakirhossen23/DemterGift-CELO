@@ -13,28 +13,23 @@ export function Nav(): JSX.Element {
 
     const [isSigned, setSigned] = useState(false);
  
+	const Web3 = require("web3")
+	const ContractKit = require('@celo/contractkit')
+	const web3 = new Web3(window.ethereum)
+	const kit = ContractKit.newKitFromWeb3(web3)
+
 
     async function fetchInfo() {
 
         if (window.ethereum.selectedAddress != null &&     window.localStorage.getItem("ConnectedMetaCelo") == "true")  {
+            let cUSDtoken = await kit.contracts.getStableToken()
+
+            let cUSDBalance = await cUSDtoken.balanceOf(window.ethereum.selectedAddress)
+
 
             await setAcc(window.ethereum.selectedAddress.toString().substring(0, 25) + "...");
-            let Blc = await fetch("https://alfajores-blockscout.celo-testnet.org/api/eth-rpc", {
-                "headers": {
-                    "accept": "application/json, text/javascript, */*; q=0.01",
-                    "accept-language": "en-US,en;q=0.9",
-                    "cache-control": "no-cache",
-                    "content-type": "application/json; charset=UTF-8",
-
-                },
-                "body": "{\"id\":0,\"jsonrpc\":\"2.0\",\"method\":\"eth_getBalance\",\"params\":[\"" + window.ethereum.selectedAddress + "\",\"latest\"]}",
-                "method": "POST",
-                "mode": "cors",
-                "credentials": "omit"
-            }).then(e => e.json()).then(e => e.result);
-            let price = parseInt(Blc) / 1000000000000000000
-
-            setBalance(price.toString() + " CELO");
+         
+            setBalance(cUSDBalance/1000000000000000000 + " cUSD");
             setSigned(true);
             window.document.getElementById("withoutSign").style.display = "none";
             window.document.getElementById("withSign").style.display = "";
@@ -84,8 +79,8 @@ export function Nav(): JSX.Element {
                             chainId: '0xaef3', //44787
                             chainName: 'Alfajores Celo Testnet',
                             nativeCurrency: {
-                                name: 'CELO',
-                                symbol: 'CELO',
+                                name: 'CUSD',
+                                symbol: 'CUSD',
                                 decimals: 18,
                             },
                             rpcUrls: ['https://alfajores-forno.celo-testnet.org'],

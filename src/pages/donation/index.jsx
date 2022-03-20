@@ -73,7 +73,7 @@ export default function Donation() {
                     if (value) {
                         const object = JSON.parse(value);
                         var pricedes1 = 0;
-                        try { pricedes1 = Number(object.properties.Goal.description * 3.054) } catch (ex) { }
+                        try { pricedes1 = Number(object.properties.Goal.description * 0.9972) } catch (ex) { }
 
                         arr.push({
                             eventId: i,
@@ -154,7 +154,7 @@ export default function Donation() {
                             <h4>{listItem.Title}</h4>
                             <div style={{ display: "flex", "whiteSpace": "pre-wrap" }}>
                                 <h4>Goal:  </h4>
-                                <h4>${listItem.Goalusd} ({listItem.Goal} CELO)</h4>
+                                <h4>${listItem.Goalusd} ({listItem.Goal} cUSD)</h4>
                             </div>
                         </div>
                     </div>

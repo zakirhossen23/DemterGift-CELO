@@ -30,6 +30,7 @@ export default function ViewNFT(user) {
     const [logo, setlogo] = useState('');
     const [selectid, setselectid] = useState('');
     const [selecttitle, setselecttitle] = useState('');
+    const [selectedAddress, setselectedAddress] = useState('');
     const [selecttype, setselecttype] = useState('');
     const [selectbid, setselectbid] = useState('');
 
@@ -88,7 +89,7 @@ export default function ViewNFT(user) {
                     try { object = await JSON.parse(obj) } catch { }
                     if (object.title) {
                         var pricedes1 = 0;
-                        try { pricedes1 = formatter.format(Number(object.properties.price.description * 3.054)) } catch (ex) { }
+                        try { pricedes1 = formatter.format(Number(object.properties.price.description * 0.9972)) } catch (ex) { }
                         const TokenId = Number(await contract.gettokenIdByUri(obj));
                         console.log(TokenId);
                         arr.push({
@@ -113,7 +114,8 @@ export default function ViewNFT(user) {
 
                 const object = JSON.parse(value);
                 setTitle(object.properties.Title.description);
-                setgoalusd(formatter.format(Number(object.properties.Goal.description *3.054)));
+                setselectedAddress(object.properties.wallet.description);
+                setgoalusd(formatter.format(Number(object.properties.Goal.description * 0.9972)));
                 setgoal(Number(object.properties.Goal.description));
                 setdateleft(LeftDate(object.properties.Date.description));
                 setdate(object.properties.Date.description);
@@ -164,21 +166,11 @@ export default function ViewNFT(user) {
 
     function activateBidNFTModal(e) {
         setselectid(e.target.getAttribute("tokenid"));
-
         setselectbid(e.target.getAttribute("highestbid"));
         console.log(selectbid);
         setselecttype("NFT");
         setModalShow(true);
     }
-    function activateBidCryptopunkTModal(e) {
-        setselectid(e.target.getAttribute("tokenid"));
-        setselecttype("Cryptopunk");
-        setselectbid(e.target.getAttribute("highestbid"));
-        console.log(selectbid);
-
-        setModalShow(true);
-    }
-
     return (
         <>
             <Head>
@@ -195,7 +187,7 @@ export default function ViewNFT(user) {
 
                         <div className='TextContainer'>
                             <h4>Goal: </h4>
-                            <h4>$ {goalusd} ({goal} CELO)</h4>
+                            <h4>$ {goalusd} ({goal} cUSD)</h4>
                         </div>
                         <div className='TextContainer'>
                             <h4 name='dateleft' date={date}>{dateleft}</h4>
@@ -208,7 +200,7 @@ export default function ViewNFT(user) {
             </div>
             {list.map((listItem) => (
                 <div key={listItem.Id} className="row ElementsContainer bgWhite">
-                    <div style={{ "display": "flex",width: '100%'}}>
+                    <div style={{ "display": "flex", width: '100%' }}>
                         {listItem.type == "Cryptopunk" ? (
                             <img src={listItem.image} className="AuctionBidImage pixel" />
                         ) : (
@@ -228,7 +220,7 @@ export default function ViewNFT(user) {
                             <div className='ElementBottomContainer'>
                                 <div style={{ width: "116px" }}>
                                     <h7 className="smallgrey">Current bid</h7>
-                                    <h4 className='bidprice'>$ {listItem.Bidprice} ({listItem.price} CELO)</h4>
+                                    <h4 className='bidprice'>$ {listItem.Bidprice} ({listItem.price} cUSD)</h4>
                                     <h7 name="date" date={date} className="smallgrey">{dateleftBid}</h7>
                                 </div>
                                 <div className='BidAllcontainer' >
@@ -238,13 +230,13 @@ export default function ViewNFT(user) {
                                                 <div tokenid={listItem.Id} title={listItem.name} className="card-body bidbuttonText">View</div>
                                             </div>
                                         </div>
- <div tokenid={listItem.Id} highestbid={listItem.price} onClick={activateBidNFTModal} className="Bidcontainer col">
-                                                <div tokenid={listItem.Id} highestbid={listItem.price} className="card BidcontainerCard">
-                                                    <div tokenid={listItem.Id} highestbid={listItem.price} className="card-body bidbuttonText">Bid</div>
-                                                </div>
+                                        <div tokenid={listItem.Id} highestbid={listItem.price} onClick={activateBidNFTModal} className="Bidcontainer col">
+                                            <div tokenid={listItem.Id} highestbid={listItem.price}  className="card BidcontainerCard">
+                                                <div tokenid={listItem.Id} highestbid={listItem.price} className="card-body bidbuttonText">Bid</div>
                                             </div>
+                                        </div>
 
-                                    
+
                                     </div>
 
 
@@ -264,9 +256,9 @@ export default function ViewNFT(user) {
                     fetchContractData();
                 }}
                 contract={contract}
-                Amount={signerAddress}
                 tokenId={selectid}
                 senderAddress={signerAddress}
+                toAddress={selectedAddress}
                 type={selecttype}
                 eventId={eventId}
                 Highestbid={selectbid}

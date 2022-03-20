@@ -4,8 +4,8 @@ const func = async (hre) => {
 	const { deploy } = deployments;
 	const { deployer } = await getNamedAccounts();
 
-	const name = 'CELO';
-	const symbol = 'CELO';
+	const name = 'CUSD';
+	const symbol = 'cUSD';
 
 	await deploy('CeloERC721', {
 		from: deployer,
@@ -14,5 +14,5 @@ const func = async (hre) => {
 	});
 };
 
-func.tags = ['CELO'];
+func.tags = ['cUSD'];
 module.exports = func;
